@@ -24,13 +24,13 @@ export const Hero = () => {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Discover Your
-            <span className="block text-chrome">Dream Machine</span>
+            Explore Automotive
+            <span className="block text-chrome">Heritage & Excellence</span>
           </h1>
           
           <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-            Experience automotive excellence. From electric powerhouses to classic sports cars, 
-            find your perfect ride in our curated collection.
+            The world's most prestigious automotive collection. From legendary hypercars to timeless luxury, 
+            discover automotive masterpieces with stunning imagery and authentic specifications.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -46,16 +46,16 @@ export const Hero = () => {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 mt-12 pt-12 border-t border-border">
             <div>
-              <div className="text-3xl font-bold text-primary">50+</div>
-              <div className="text-sm text-muted-foreground">Premium Cars</div>
+              <div className="text-3xl font-bold text-primary">400+</div>
+              <div className="text-sm text-muted-foreground">Luxury Cars</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">15+</div>
-              <div className="text-sm text-muted-foreground">Top Brands</div>
+              <div className="text-3xl font-bold text-primary">40+</div>
+              <div className="text-sm text-muted-foreground">Elite Brands</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">24/7</div>
-              <div className="text-sm text-muted-foreground">Support</div>
+              <div className="text-3xl font-bold text-primary">100%</div>
+              <div className="text-sm text-muted-foreground">Authentic</div>
             </div>
           </div>
         </div>

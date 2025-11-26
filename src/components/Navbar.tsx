@@ -1,7 +1,8 @@
-import { Car, Search, Heart, Menu } from "lucide-react";
+import { Search, Heart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import heritageVaultLogo from "@/assets/heritage-vault-logo.png";
 
 interface NavbarProps {
   onSearchChange: (value: string) => void;
@@ -22,12 +23,16 @@ export const Navbar = ({ onSearchChange, favoritesCount }: NavbarProps) => {
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 gradient-hero rounded-xl flex items-center justify-center shadow-glow">
-              <Car className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 flex items-center justify-center">
+              <img 
+                src={heritageVaultLogo} 
+                alt="The Heritage Vault Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="hidden md:block">
-              <h1 className="text-xl font-bold text-chrome">AUTOYAAN</h1>
-              <p className="text-xs text-muted-foreground">Studio by Taksh</p>
+              <h1 className="text-xl font-bold text-chrome">THE HERITAGE VAULT</h1>
+              <p className="text-xs text-muted-foreground">Luxury Automotive Collection</p>
             </div>
           </div>
 
