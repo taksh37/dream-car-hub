@@ -19,6 +19,13 @@ export const CarCard = ({ car, onToggleFavorite, isFavorite }: CarCardProps) => 
     return `₹${(price / 10000000).toFixed(2)} Cr`;
   };
 
+  const getCarImageUrl = (image: string) => {
+    if (image.startsWith("/src/assets/cars/")) {
+      return image.replace("/src/assets/cars/", "/cars/");
+    }
+    return image;
+  };
+
   return (
     <div className="group relative perspective-card">
       <div className="relative overflow-hidden rounded-2xl bg-card border border-border shadow-card hover:shadow-glow transition-smooth hover:-translate-y-2">
@@ -28,7 +35,7 @@ export const CarCard = ({ car, onToggleFavorite, isFavorite }: CarCardProps) => 
             <div className="absolute inset-0 bg-muted animate-pulse" />
           )}
           <img
-            src={car.image}
+            src={getCarImageUrl(car.image)}
             alt={car.name}
             className={`w-full h-full object-cover transition-all duration-700 ${
               imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
