@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fix Image Paths - Heritage Vault</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+    button { background: #3b82f6; color: white; border: none; padding: 15px 30px; font-size: 16px; border-radius: 8px; cursor: pointer; margin: 10px 0; }
+    button:hover { background: #2563eb; }
+    .status { margin: 20px 0; padding: 15px; border-radius: 8px; }
+    .success { background: #d1fae5; color: #065f46; }
+    .info { background: #dbeafe; color: #1e40af; }
+    pre { background: #f3f4f6; padding: 15px; border-radius: 8px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>🔧 Fix Image Paths</h1>
+  <p>This tool will fix all image paths from <code>/src/assets/cars/</code> to <code>/cars/</code></p>
+  
+  <button onclick="fixAllPaths()">Fix All Image Paths</button>
+  
+  <div id="status"></div>
+  
+  <script>
+    async function fixAllPaths() {
+      const status = document.getElementById('status');
+      status.innerHTML = '<div class="info">Processing files...</div>';
+      
+      const files = [
+        '/src/data/luxury-cars.ts',
+        '/src/data/mid-luxury-cars.ts',
+        '/src/data/semi-luxury-cars.ts',
+        '/src/data/indian-cars.ts'
+      ];
+      
+      const results = [];
+      
+      for (const file of files) {
+        try {
+          const response = await fetch(file);
+          let content = await response.text();
+          
+          // Count replacements
+          const matches = content.match(/\/src\/assets\/cars\//g);
+          const count = matches ? matches.length : 0;
+          
+          // Replace paths
+          content = content.replace(/\/src\/assets\/cars\//g, '/cars/');
+          
+          results.push({ file, count, content });
+        } catch (error) {
+          results.push({ file, error: error.message });
+        }
+      }
+      
+      // Display results
+      let html = '<div class="success"><h3>✅ Processing Complete!</h3>';
+      results.forEach(r => {
+        if (r.error) {
+          html += `<p>❌ ${r.file}: ${r.error}</p>`;
+        } else {
+          html += `<p>✓ ${r.file}: Fixed ${r.count} image paths</p>`;
+        }
+      });
+      html += '<h4>Next Steps:</h4>';
+      html += '<ol>';
+      html += '<li>Copy the fixed content from browser DevTools Console (run: <code>copy(window.fixedFiles)</code>)</li>';
+      html += '<li>Or download each file individually using the browser Save function</li>';
+      html += '<li>Replace the original files in your project</li>';
+      html += '</ol>';
+      html += '</div>';
+      
+      // Store in window for easy access
+      window.fixedFiles = results;
+      
+      // Log to console for easy copying
+      console.log('Fixed files:', results);
+      console.log('To copy a file, use: copy(fixedFiles[0].content)');
+      
+      status.innerHTML = html;
+    }
+  </script>
+  
+  <h2>Manual Fix Instructions</h2>
+  <p>If the automatic fix doesn't work, you can manually find and replace in your code editor:</p>
+  <pre>Find:    /src/assets/cars/
+Replace: /cars/</pre>
+  <p>In files: <code>src/data/*.ts</code></p>
+</body>
+</html>
