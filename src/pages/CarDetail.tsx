@@ -29,12 +29,19 @@ export const CarDetail = () => {
     return `₹${(price / 10000000).toFixed(2)} Cr`;
   };
 
+  const getCarImageUrl = (image: string) => {
+    if (image.startsWith("/src/assets/cars/")) {
+      return image.replace("/src/assets/cars/", "/cars/");
+    }
+    return image;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative h-[60vh] overflow-hidden">
         <img 
-          src={car.image} 
+          src={getCarImageUrl(car.image)} 
           alt={car.name}
           className="w-full h-full object-cover"
         />
